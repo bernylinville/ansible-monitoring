@@ -1,0 +1,12 @@
+---
+- name: Ansible-Monitoring
+  hosts: all
+
+  roles:
+
+    - role: geerlingguy.docker
+
+    - role: docker
+
+    - role: grafana
+

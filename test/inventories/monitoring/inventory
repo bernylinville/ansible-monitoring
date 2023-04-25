@@ -1,0 +1,9 @@
+[all]
+## Example when running from a remote workstation
+ansible-monitoring ansible_host=192.168.121.208
+
+## Example when running directly on your Ansible-Monitoring server
+# ansible-monitoring ansible_connection=local ansible_host=localhost
+
+[monitoring]
+ansible-monitoring ansible_host=192.168.121.208

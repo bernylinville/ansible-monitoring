@@ -1,0 +1,12 @@
+---
+- name: Create data directory
+  ansible.builtin.file:
+    path: "/data"
+    mode: 0755
+    state: directory
+
+- name: Create Docker home directory
+  ansible.builtin.file:
+    path: "{{ docker_home }}"
+    mode: 0755
+    state: directory

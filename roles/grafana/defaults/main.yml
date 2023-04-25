@@ -1,0 +1,14 @@
+---
+# directories
+grafana_data_directory: "{{ docker_home }}/grafana"
+
+# network
+grafana_hostname: "grafana"
+
+# docker
+grafana_container_name: "grafana"
+grafana_image_name: "grafana/grafana"
+grafana_image_version: 9.4.7
+
+# specs
+grafana_memory: 4g

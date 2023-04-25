@@ -1,0 +1,25 @@
+---
+- name: Start Grafana
+  block:
+    - name: Create Grafana Directories
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+      with_items:
+        - "{{ grafana_data_directory }}/config"
+
+    - name: Grafana Docker Container
+      community.docker.docker_container:
+        name: "{{ grafana_container_name }}"
+        image: "{{ grafana_image_name }}:{{ grafana_image_version }}"
+        pull: true
+        volumes:
+          - "{{ grafana_data_directory }}/grafana:/var/lib/grafana:rw"
+        network_mode: host
+        restart_policy: unless-stopped
+        env:
+          # TZ: "{{ ansible_monitoring_timezone }}"
+          GF_SECURITY_ADMIN_USER: ${ADMIN_USER:-admin}
+          GF_SECURITY_ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+          GF_USERS_ALLOW_SIGN_UP: "false"
+        memory: "{{ grafana_memory }}"
